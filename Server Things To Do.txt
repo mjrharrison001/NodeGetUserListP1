@@ -1,0 +1,5 @@
+- update pages to include: upload file, current uploaded file..
+- add collors for yellow red and sorting
+- pull data ex - manager, division...
+- Buttons for exports
+- Verify data size by checking size of nonIBMEr
