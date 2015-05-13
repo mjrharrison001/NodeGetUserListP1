@@ -87,7 +87,7 @@ function daemon() {
     });
   bufferData(); // users daemon
 }
-setInterval( function() { daemon() },   120 * 1000);
+setInterval( function() { daemon() },   604800 * 1000);
 
 function bufferData(){
   var input = fs.createReadStream(latestUp);
