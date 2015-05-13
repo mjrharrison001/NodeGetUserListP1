@@ -9,6 +9,7 @@ var request = require('request');
 var cheerio = require('cheerio');
 var fs = require('fs');
 var $ = require('jquery');
+var latestUp = "";
 
 //GLOBAL NEEDS TO BE RESET
 //var globalFlagedEmails = '';
@@ -56,16 +57,6 @@ app.get('/home',function(req,res){
 
 app.post('/api/uploads',function(req,res){
   if(done==true){
-      //create a file to export red and yellow data to
-    fs.writeFile('redFlagLog.txt', '', function (err) {
-    if (err) throw err;
-    console.log('file saved.');
-    });
-    fs.writeFile('yellowFlagLog.txt', '', function (err) {
-      if (err) throw err;
-      console.log('file saved.');
-    });
-    //**modify below***
     res.sendfile("index_1.html");
     daemon();
   }
@@ -85,9 +76,18 @@ fs.readFile('index_1.html', options_fs, function(err, data){
 
 function daemon() {
   console.log("---daemon running " + new Date().toString() );
+   //create a file to export red and yellow data to
+    fs.writeFile('redFlagLog.txt', '', function (err) {
+    if (err) throw err;
+    console.log('file saved.');
+    });
+    fs.writeFile('yellowFlagLog.txt', '', function (err) {
+      if (err) throw err;
+      console.log('file saved.');
+    });
   bufferData(); // users daemon
 }
-setInterval( function() { daemon() },   86400 * 1000);
+setInterval( function() { daemon() },   120 * 1000);
 
 function bufferData(){
   var input = fs.createReadStream(latestUp);
